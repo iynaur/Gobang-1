@@ -1,26 +1,39 @@
-//MainWindow.c
+/*----------------------------------------
+	MainWindow.c
+	定义、注册五子棋游戏主窗类并创建窗口，
+同时调用Gobang.c中的函数处理用户输入并显示
+	开发环境：Visual Studio 2008
+----------------------------------------*/
+
 //五子棋游戏主窗口
+#ifndef _INC_WINDOWSX
 #include <WindowsX.h>
+#endif
+
+#ifndef _WINDOWS_
 #include <windows.h>
+#endif
+
+#ifndef _INC_STDLIB
 #include <stdlib.h>
+#endif
+
+#ifndef _GOBANG_H_
 #include "Gobang.h"
+#endif
+
 //定义五子棋谱的线数
 #ifndef LINECOUNT 
 #define LINECOUNT 15
 #endif
+
 //定义五子棋棋子半径
 #ifndef RADIUS
 #define RADIUS 15
 #endif
-//#pragma comment(lib, "gdi32.lib")
-//#pragma comment(lib, "User32.lib")
+
 //声明窗口过程函数
-LRESULT CALLBACK WinProc(
-						 HWND hwnd,
-						 UINT uMsg,
-						 WPARAM wParam,
-						 LPARAM lParam
-						 );
+LRESULT CALLBACK WinProc(HWND hwnd,UINT uMsg,WPARAM wParam,LPARAM lParam);
 
 //定义主函数
 int WINAPI WinMain(
