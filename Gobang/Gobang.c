@@ -404,6 +404,7 @@ void ShowGameStatus(HDC* pdc, int count, RECT r, int offset)
 		CLIP_CHARACTER_PRECIS,DEFAULT_QUALITY,
 		FF_MODERN,TEXT("ËÎÌå"));
 	hOldFont=SelectObject(*pdc, hFont);
+	SetBkColor(*pdc, RGB(255,250,00));
 	if (count%2)
 	{
 		TextOut(*pdc, 2, 2, TEXT("ÏÖÔÚ°×Æå"),4);
