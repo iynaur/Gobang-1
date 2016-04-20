@@ -53,10 +53,8 @@ int WINAPI WinMain(
 	//设计窗口类
 	wndcls.cbClsExtra=0;
 	wndcls.cbWndExtra=0;
-	//	wndcls.hbrBackground=(HBRUSH)GetStockObject(WHITE_BRUSH);
 	wndcls.hbrBackground=hBrush;
 	wndcls.hCursor=LoadCursor(NULL,IDC_ARROW);
-	//	wndcls.hIcon=LoadIcon(NULL,IDI_WINLOGO);
 	wndcls.hIcon=LoadIcon(hInstance,MAKEINTRESOURCE( 100 ));
 	wndcls.hInstance=hInstance;
 	wndcls.lpfnWndProc=WinProc;
@@ -133,21 +131,23 @@ LRESULT CALLBACK WinProc(
 	{
 		//键入字符消息
 	case WM_CHAR:
-		MessageBox(hwnd,TEXT("char"),TEXT("char"),0);
+		
 		break;
-		//	case WM_CREATE:
-		//	GetWindowRect(hwnd, &r);
-		//	hdc=GetDC(hwnd);
-		//	hPen = CreatePen( PS_SOLID , 3 , RGB( 0 , 0 , 0 ));
-		//	hPenOld = ( HPEN )SelectObject ( hdc , hPen );
-		//	MoveToEx(hdc, 100, 0, NULL);
-		//	LineTo(hdc, 100, 100);
-		//	SelectObject(hdc, hPenOld);
-		//	DeleteObject(hPen);
-		//	break;
-		//		case WM_SIZING:
-		//			GetWindowRect(hwnd, &r);
-		//	break;
+		/*
+		case WM_CREATE:
+		GetWindowRect(hwnd, &r);
+		hdc=GetDC(hwnd);
+		hPen = CreatePen( PS_SOLID , 3 , RGB( 0 , 0 , 0 ));
+		hPenOld = ( HPEN )SelectObject ( hdc , hPen );
+		MoveToEx(hdc, 100, 0, NULL);
+		LineTo(hdc, 100, 100);
+		SelectObject(hdc, hPenOld);
+		DeleteObject(hPen);
+		break;
+		case WM_SIZING:
+					GetWindowRect(hwnd, &r);
+			break;
+		*/
 		//窗口大小改变消息
 	case WM_SIZE:
 		//获得窗口在屏幕坐标系下的坐标
@@ -166,14 +166,6 @@ LRESULT CALLBACK WinProc(
 		screenWidth = rt.right - rt.left;
 		screenHeight = rt.bottom - rt.top;
 
-
-		/*
-		char str[25];
-		itoa(rt.bottom-rt.top, str, 10);
-		MessageBox(hwnd, str, "显示", MB_OKCANCEL);
-		//	itoa(rectWin.left, str, 10);
-		//	MessageBox(hwnd, str, "显示", MB_OKCANCEL);						
-		*/
 		//若小于初始宽度或高度，恢复为初始值
 
 		if (wParam == SIZE_MAXIMIZED)
@@ -201,24 +193,17 @@ LRESULT CALLBACK WinProc(
 		break;
 
 	case WM_PAINT:
-		//		hdc=GetDC(hwnd);
+		
 		hdc=BeginPaint(hwnd, &ps);
 		GetClientRect(hwnd, &rectClient);
 		GetWindowRect(hwnd, &rectWin);
 
-		/*
-		char str[25];
-		//	itoa(rectWin.right - rectWin.left , str, 10);
-		//	MessageBox(hwnd, str, "显示", MB_OKCANCEL);
-		itoa(rectClient.bottom-rectClient.top , str, 10);
-		MessageBox(hwnd, str, "显示", MB_OKCANCEL);
-		*/
 
 		DisplayInitBackground(&hdc, rectClient, offset);
 		DisplayChess(&hdc, existedPoint, count, rectClient, offset, RADIUS);
 		ShowGameStatus(&hdc, count, rectClient, offset);
 		EndPaint(hwnd, &ps);
-		//			ReleaseDC(hwnd, hdc);
+		
 		break;
 
 	case WM_LBUTTONDOWN:
@@ -227,15 +212,6 @@ LRESULT CALLBACK WinProc(
 		yPos = GET_Y_LPARAM(lParam);
 		GetClientRect(hwnd, &rectClient);
 		hdc=GetDC(hwnd);
-
-
-
-		/*			char str[25];
-		itoa(screenWidth, str, 10);
-		MessageBox(hwnd, str, "显示", MB_OKCANCEL);
-		itoa(screenHeight, str, 10);
-		MessageBox(hwnd, str, "显示", MB_OKCANCEL);
-		*/
 
 
 		//判断单击的是否为棋盘的交叉点

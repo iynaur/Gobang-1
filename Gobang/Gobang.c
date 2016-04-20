@@ -37,13 +37,7 @@ BOOL DisplayInitBackground(HDC* pdc, RECT r, unsigned offset)
 	unsigned left = edge/2+width;
 	unsigned top = offset+edge/2+width;
 	int i = 0;
-	/*
-	char str[25];
-	itoa(left, str, 10);
-	MessageBox(NULL, str, "显示", MB_OKCANCEL);
-	itoa(top, str, 10);
-	MessageBox(NULL, str, "显示", MB_OKCANCEL);
-	*/
+	
 
 	HPEN hPen;			//将要使用的画笔
 	HPEN hPenOld;		//当前画笔
@@ -89,13 +83,6 @@ BOOL IsIntersection(int x, int y, RECT r, int offset, int shift)
 	int left = edge/2+width;
 	int top = offset+edge/2+width;
 
-	/*	
-	char str[25];
-	itoa(abs((x-left)%width), str, 10);
-	MessageBox(NULL, str, "显示", MB_OKCANCEL);
-	itoa(abs((y-top)%width), str, 10);
-	MessageBox(NULL, str, "显示", MB_OKCANCEL);
-	*/
 	//在棋盘范围内
 	if ((x-left) >= -shift  &&	(x-left) <= ((LINECOUNT-1)*width+shift)
 		&& (y-top) >= -shift  && (y-top) <= ((LINECOUNT-1)*width+shift)  
